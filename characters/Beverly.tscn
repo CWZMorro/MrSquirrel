@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtajpftpjw8kb"]
+
+[ext_resource type="Texture2D" uid="uid://bsjisvrq2lhn" path="res://characters/beverly/Beverly.png" id="1_p2pyl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vtnoy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p2pyl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Beverly" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(15, 128)
+sprite_frames = SubResource("SpriteFrames_vtnoy")
+animation = &"idle"

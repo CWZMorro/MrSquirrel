@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://w4y4f6b8170h"]
+
+[ext_resource type="Texture2D" uid="uid://bjt40himk43k" path="res://assets/MainScene.png" id="1_wtcfe"]
+[ext_resource type="PackedScene" uid="uid://dtajpftpjw8kb" path="res://characters/Beverly.tscn" id="2_0e48y"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_wtcfe")
+expand_mode = 1
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Beverly" parent="CanvasLayer2/Control" instance=ExtResource("2_0e48y")]
+position = Vector2(0, -366)
+scale = Vector2(0.8, 0.8)

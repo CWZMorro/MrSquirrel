@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsjisvrq2lhn"
-path="res://.godot/imported/Beverly.png-dbbca440b0d6fc2eb06860ab6dd41e42.ctex"
+path="res://.godot/imported/idle.png-f6e61fb89eff6aa69ccecdcc0ffd57fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/beverly/Beverly.png"
-dest_files=["res://.godot/imported/Beverly.png-dbbca440b0d6fc2eb06860ab6dd41e42.ctex"]
+source_file="res://characters/beverly/idle.png"
+dest_files=["res://.godot/imported/idle.png-f6e61fb89eff6aa69ccecdcc0ffd57fc.ctex"]
 
 [params]
 

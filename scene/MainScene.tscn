@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://w4y4f6b8170h"]
+
+[ext_resource type="Script" uid="uid://ku53lydup88d" path="res://script/MainScene.cs" id="1_vbi7m"]
+[ext_resource type="Texture2D" uid="uid://bjt40himk43k" path="res://assets/MainScene.png" id="2_hip4p"]
+[ext_resource type="PackedScene" uid="uid://dtajpftpjw8kb" path="res://characters/Character.tscn" id="3_mbb2f"]
+[ext_resource type="PackedScene" uid="uid://dgk2iwobdsue5" path="res://assets/DialogUI.tscn" id="4_tq7j2"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_vbi7m")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hip4p")
+expand_mode = 1
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Character" type="Control" parent="CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Character" parent="CanvasLayer2/Character" instance=ExtResource("3_mbb2f")]
+position = Vector2(0, -366)
+scale = Vector2(0.8, 0.8)
+
+[node name="DialogUI" parent="CanvasLayer2" instance=ExtResource("4_tq7j2")]

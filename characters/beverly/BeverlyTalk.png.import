@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsjisvrq2lhn"
-path="res://.godot/imported/idle.png-f6e61fb89eff6aa69ccecdcc0ffd57fc.ctex"
+uid="uid://c44vvwfo4qqn0"
+path="res://.godot/imported/BeverlyTalk.png-63aac0ea2fe1c35c6bef7f4ae959c59d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/beverly/idle.png"
-dest_files=["res://.godot/imported/idle.png-f6e61fb89eff6aa69ccecdcc0ffd57fc.ctex"]
+source_file="res://characters/beverly/BeverlyTalk.png"
+dest_files=["res://.godot/imported/BeverlyTalk.png-63aac0ea2fe1c35c6bef7f4ae959c59d.ctex"]
 
 [params]
 

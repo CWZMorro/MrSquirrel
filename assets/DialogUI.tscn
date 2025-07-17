@@ -196,7 +196,7 @@ grow_vertical = 2
 color = Color(0.235294, 0.180392, 0.509804, 0.466667)
 polygon = PackedVector2Array(250, 0, 300, 76, 0, 76, 0, 0)
 
-[node name="Name" type="Label" parent="SpeakerBox"]
+[node name="SpeakerName" type="Label" parent="SpeakerBox"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

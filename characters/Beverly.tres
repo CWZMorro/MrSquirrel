@@ -1,0 +1,23 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://b1enqsyg7d31c"]
+
+[ext_resource type="Texture2D" uid="uid://bsjisvrq2lhn" path="res://characters/beverly/BeverlyIdle.png" id="1_u5qlp"]
+[ext_resource type="Texture2D" uid="uid://c44vvwfo4qqn0" path="res://characters/beverly/BeverlyTalk.png" id="2_cfcdu"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_u5qlp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cfcdu")
+}],
+"loop": true,
+"name": &"talking",
+"speed": 5.0
+}]

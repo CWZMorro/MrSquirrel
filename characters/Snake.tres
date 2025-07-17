@@ -1,0 +1,23 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://cohqbt8k4guat"]
+
+[ext_resource type="Texture2D" uid="uid://m45470yc7d4x" path="res://characters/snake/SnakeIdle.png" id="1_ymuw1"]
+[ext_resource type="Texture2D" uid="uid://eupc4800oiv7" path="res://characters/snake/SnakeTalk.png" id="2_pqagf"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ymuw1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pqagf")
+}],
+"loop": true,
+"name": &"talking",
+"speed": 5.0
+}]

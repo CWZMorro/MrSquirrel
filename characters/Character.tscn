@@ -1,27 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtajpftpjw8kb"]
+[gd_scene load_steps=3 format=3 uid="uid://dtajpftpjw8kb"]
 
-[ext_resource type="Texture2D" uid="uid://bsjisvrq2lhn" path="res://characters/beverly/idle.png" id="1_p2pyl"]
-[ext_resource type="Texture2D" uid="uid://fxkysfchhkwq" path="res://characters/snake/idle.png" id="2_cqlfc"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vtnoy"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_p2pyl")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}]
+[ext_resource type="Script" uid="uid://llbq7871aw38" path="res://script/Character.cs" id="1_cqlfc"]
+[ext_resource type="SpriteFrames" uid="uid://cohqbt8k4guat" path="res://characters/Snake.tres" id="2_cqlfc"]
 
 [node name="Character" type="Node2D"]
+script = ExtResource("1_cqlfc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(15, 128)
-sprite_frames = SubResource("SpriteFrames_vtnoy")
-animation = &"idle"
-
-[node name="Idle" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(122, 80)
-texture = ExtResource("2_cqlfc")
+position = Vector2(176, 104)
+sprite_frames = ExtResource("2_cqlfc")
+animation = &"talking"

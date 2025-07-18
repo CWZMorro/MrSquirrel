@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtajpftpjw8kb"]
 
-[ext_resource type="Script" uid="uid://llbq7871aw38" path="res://script/Character.cs" id="1_cqlfc"]
+[ext_resource type="Script" uid="uid://llbq7871aw38" path="res://script/CharacterSprite.cs" id="1_cqlfc"]
 [ext_resource type="SpriteFrames" uid="uid://cohqbt8k4guat" path="res://characters/Snake.tres" id="2_cqlfc"]
 
-[node name="Character" type="Node2D"]
+[node name="CharacterSprite" type="Node2D"]
 script = ExtResource("1_cqlfc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

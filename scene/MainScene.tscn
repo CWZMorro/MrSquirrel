@@ -35,7 +35,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Character" parent="CanvasLayer2/Character" instance=ExtResource("3_mbb2f")]
+[node name="CharacterSprite" parent="CanvasLayer2/Character" instance=ExtResource("3_mbb2f")]
 position = Vector2(0, -366)
 scale = Vector2(0.8, 0.8)
 

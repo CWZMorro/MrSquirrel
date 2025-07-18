@@ -1,16 +1,11 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 
-public partial class Character : Node2D
+public partial class CharacterSprite : Node2D
 {
 
 	private AnimatedSprite2D animatedSprite;
-	private static readonly Dictionary<string, SpriteFrames> CHARACTER_FRAMES = new()
-	{
-		{"Beverly", GD.Load<SpriteFrames>("res://characters/Beverly.tres")},
-		{"Snake", GD.Load<SpriteFrames>("res://characters/Snake.tres")}
-	};
+	private CharacterDatabase charData = new CharacterDatabase();
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -24,7 +19,7 @@ public partial class Character : Node2D
 
 	public void ChangeCharacter(string name, string expression = "idle")
 	{
-		animatedSprite.SpriteFrames = CHARACTER_FRAMES[name];
+		animatedSprite.SpriteFrames = charData.getCharInfo(name);
 
 		if (expression.Equals("talking"))
 		{

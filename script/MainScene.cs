@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class MainScene : Node2D
 {
-	private Character character;
+	private CharacterSprite character;
 	private DialogUi dialogUi;
 	private int dialogIndex = 0;
 	public static readonly string[] dialogLines = {
@@ -19,7 +19,7 @@ public partial class MainScene : Node2D
 	public override void _Ready()
 	{
 		dialogIndex = 0;
-		character = GetNode<Character>("CanvasLayer2/Character/Character");
+		character = GetNode<CharacterSprite>("CanvasLayer2/Character/CharacterSprite");
 		dialogUi = GetNode<DialogUi>("CanvasLayer2/DialogUI");
 		dialogUi.Connect("AnimationDone", new Callable(this, nameof(OnTextAnimationDone)));
 
@@ -56,7 +56,7 @@ public partial class MainScene : Node2D
 	//Convert dialog lines, separating Speaker and dialog in a dictionary.
 	public Dictionary<string, string> ParseLine(string line)
 	{
-		String[] lineInfo = line.Split(":");
+		string[] lineInfo = line.Split(":");
 
 		//Error handling
 		if (lineInfo.Length < 2)

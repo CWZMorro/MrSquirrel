@@ -21,6 +21,7 @@ public partial class MainScene : Node2D
 		dialogIndex = 0;
 		character = GetNode<Character>("CanvasLayer2/Character/Character");
 		dialogUi = GetNode<DialogUi>("CanvasLayer2/DialogUI");
+		dialogUi.Connect("AnimationDone", new Callable(this, nameof(OnTextAnimationDone)));
 
 		ProcessCurrentLine();
 	}
@@ -35,11 +36,19 @@ public partial class MainScene : Node2D
 	{
 		if (@event.IsActionPressed("nextLine"))
 		{
-			if (dialogIndex < dialogLines.Length - 1)
+			if (dialogUi.getAnimateText())
 			{
-				dialogIndex += 1;
-				ProcessCurrentLine();
+				dialogUi.SkipTextAnimation();
 			}
+			else
+			{
+				if (dialogIndex < dialogLines.Length - 1)
+				{
+					dialogIndex += 1;
+					ProcessCurrentLine();
+				}
+			}
+
 		}
 	}
 
@@ -69,6 +78,18 @@ public partial class MainScene : Node2D
 		var lineInfo = ParseLine(line);
 		dialogUi.changeLine(lineInfo["speakerName"], lineInfo["dialogLine"]);
 		dialogUi.setDialogLine(lineInfo["dialogLine"]);
-		character.ChangeCharacter(lineInfo["speakerName"]);
+		if (dialogUi.getAnimateText())
+		{
+			character.ChangeCharacter(lineInfo["speakerName"], "talking");
+		}
+		else
+		{
+			character.ChangeCharacter(lineInfo["speakerName"]);
+		}
+	}
+
+	public void OnTextAnimationDone()
+	{
+		character.PlayIdleAnimation();
 	}
 }

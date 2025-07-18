@@ -9,4 +9,4 @@ script = ExtResource("1_cqlfc")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(176, 104)
 sprite_frames = ExtResource("2_cqlfc")
-animation = &"talking"
+animation = &"idle"

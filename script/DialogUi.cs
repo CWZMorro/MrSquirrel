@@ -3,12 +3,15 @@ using System;
 
 public partial class DialogUi : Control
 {
+	[Signal]
+	public delegate void AnimationDoneEventHandler();
 	private RichTextLabel dialogLine;
 	private Label speakerName;
 	// Called when the node enters the scene tree for the first time.
 	private int ANIMATION_SPEED = 30;
 	private bool animateText = false;
 	private int currentVisibleChar = 0;
+	
 	public override void _Ready()
 	{
 		dialogLine = GetNode<RichTextLabel>("DialogBox/DialogLine");
@@ -22,12 +25,13 @@ public partial class DialogUi : Control
 		{
 			if (dialogLine.VisibleRatio < 1)
 			{
-				dialogLine.VisibleRatio += (float)((1.0 / dialogLine.Text.Length) * (ANIMATION_SPEED*delta));
+				dialogLine.VisibleRatio += (float)((1.0 / dialogLine.Text.Length) * (ANIMATION_SPEED * delta));
 				currentVisibleChar = dialogLine.VisibleCharacters;
 			}
 			else
 			{
 				animateText = false;
+				EmitSignal(SignalName.AnimationDone);
 			}
 		}
 	}
@@ -39,7 +43,17 @@ public partial class DialogUi : Control
 
 	public void setSpeakerName(string name)
 	{
-		speakerName.Text = name;	
+		speakerName.Text = name;
+	}
+
+	public void setAnimateText(bool animation)
+	{
+		animateText = animation;
+	}
+
+	public bool getAnimateText()
+	{
+		return animateText;
 	}
 	public void changeLine(string name, string line)
 	{
@@ -48,5 +62,10 @@ public partial class DialogUi : Control
 		dialogLine.Text = line;
 		animateText = true;
 		dialogLine.VisibleCharacters = 0;
+	}
+
+	public void SkipTextAnimation()
+	{
+		dialogLine.VisibleRatio = 1;
 	}
 }

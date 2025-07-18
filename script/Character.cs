@@ -26,7 +26,7 @@ public partial class Character : Node2D
 	{
 		animatedSprite.SpriteFrames = CHARACTER_FRAMES[name];
 
-		if (expression == "talking")
+		if (expression.Equals("talking"))
 		{
 			animatedSprite.Play("talking");
 		}
@@ -34,5 +34,10 @@ public partial class Character : Node2D
 		{
 			animatedSprite.Play("idle");
 		}
+	}
+
+	public void PlayIdleAnimation()
+	{
+		animatedSprite.Play("idle");
 	}
 }

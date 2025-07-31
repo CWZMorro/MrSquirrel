@@ -1,6 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgk2iwobdsue5"]
+[gd_scene load_steps=11 format=3 uid="uid://dgk2iwobdsue5"]
 
 [ext_resource type="Script" uid="uid://d3ki1f3k3jkvu" path="res://script/DialogUi.cs" id="1_8lmd8"]
+[ext_resource type="PackedScene" uid="uid://ky0e3p02fjc8" path="res://scene/playerChoice.tscn" id="2_vmvoc"]
+
+[sub_resource type="SystemFont" id="SystemFont_8lmd8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmvoc"]
+bg_color = Color(0.26887, 0.698308, 0.419486, 0.372549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6y2ra"]
+bg_color = Color(0.705882, 0.588235, 0.219608, 0.372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0d4be"]
+bg_color = Color(0.705882, 0.588235, 0.219608, 0.372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.913725, 0.784314, 0.505882, 0.584314)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4r1m"]
 content_margin_left = 20.0
@@ -10,6 +31,17 @@ content_margin_bottom = 10.0
 bg_color = Color(0, 0, 0, 0.607843)
 
 [sub_resource type="Theme" id="Theme_8lmd8"]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 40
+Button/fonts/font = SubResource("SystemFont_8lmd8")
+Button/styles/focus = SubResource("StyleBoxFlat_vmvoc")
+Button/styles/hover = SubResource("StyleBoxFlat_6y2ra")
+Button/styles/normal = SubResource("StyleBoxFlat_0d4be")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_v4r1m")
 
 [sub_resource type="FontFile" id="FontFile_4hqp4"]
@@ -146,6 +178,23 @@ grow_vertical = 2
 theme = SubResource("Theme_8lmd8")
 script = ExtResource("1_8lmd8")
 
+[node name="ChoicesContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChoiceList" type="VBoxContainer" parent="ChoicesContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Button" parent="ChoicesContainer/ChoiceList" instance=ExtResource("2_vmvoc")]
+visible = false
+layout_mode = 2
+
 [node name="DialogBox" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 1
@@ -157,6 +206,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="DialogLine" type="RichTextLabel" parent="DialogBox"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/bold_italics_font_size = 40
 theme_override_font_sizes/italics_font_size = 40
@@ -183,6 +233,7 @@ position = Vector2(-33, -31)
 polygon = PackedVector2Array(0, 0, 50, 25, 0, 50)
 
 [node name="SpeakerBox" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -197,6 +248,7 @@ color = Color(0.235294, 0.180392, 0.509804, 0.466667)
 polygon = PackedVector2Array(250, 0, 300, 76, 0, 76, 0, 0)
 
 [node name="SpeakerName" type="Label" parent="SpeakerBox"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

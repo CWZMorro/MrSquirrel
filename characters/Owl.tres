@@ -1,0 +1,23 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://ctkgdbyq7x867"]
+
+[ext_resource type="Texture2D" uid="uid://d31pobm5d6ylm" path="res://characters/owl/OwlIdle.png" id="1_pg4fm"]
+[ext_resource type="Texture2D" uid="uid://u0jwt0dy3dge" path="res://characters/owl/OwlTalk.png" id="2_mdfw4"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pg4fm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mdfw4")
+}],
+"loop": true,
+"name": &"talking",
+"speed": 5.0
+}]

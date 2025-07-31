@@ -1,35 +1,18 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
-public enum Character
-	{
-		Beverly,
-		Snake,
-		Owl,
-		Squirrel,
-		Monkey,
-		Eagle,
-		Canary,
-		Parrot,
-		Frog,
-		Swan,
-		Hedgehog,
-		Player
-	}
 public class CharacterInfo
 {
-	public Character name { get; }
+	public string name { get; }
 	public string gender { get; }
 	public SpriteFrames charImg { get; }
 
-	public CharacterInfo(Character name, string gender, SpriteFrames charImg = null)
+	public CharacterInfo(string name, string gender, SpriteFrames charImg = null)
 	{
 		this.name = name;
 		this.gender = gender;
 		this.charImg = charImg;
 	}
-	
 }
 
 public class CharacterDatabase
@@ -37,12 +20,11 @@ public class CharacterDatabase
 	public readonly Dictionary<string, CharacterInfo> CHARACTER_INFORMATION = new()
 	{
 		{"Beverly",
-		new CharacterInfo(Character.Beverly, "female", GD.Load<SpriteFrames>("res://characters/Beverly.tres"))},
+		new CharacterInfo("Beverly", "female", GD.Load<SpriteFrames>("res://characters/Beverly.tres"))},
 		{"Snake",
-		new CharacterInfo(Character.Snake, "male", GD.Load<SpriteFrames>("res://characters/Snake.tres"))},
+		new CharacterInfo("Snake", "male", GD.Load<SpriteFrames>("res://characters/Snake.tres"))},
 		{"Owl",
-		new CharacterInfo(Character.Owl, "male")},
-
+		new CharacterInfo("Owl", "male", GD.Load<SpriteFrames>("res://characters/Owl.tres"))}
 	};
 
 	public SpriteFrames getCharInfo(string name)

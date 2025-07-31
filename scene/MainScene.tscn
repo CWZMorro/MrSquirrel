@@ -36,7 +36,9 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="CharacterSprite" parent="CanvasLayer2/Character" instance=ExtResource("3_mbb2f")]
+unique_name_in_owner = true
 position = Vector2(0, -366)
 scale = Vector2(0.8, 0.8)
 
 [node name="DialogUI" parent="CanvasLayer2" instance=ExtResource("4_tq7j2")]
+unique_name_in_owner = true

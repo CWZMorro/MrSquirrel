@@ -1,33 +1,28 @@
 using Godot;
-using System;
-using System.Collections.Generic;
 
 public partial class MainScene : Node2D
 {
 	private CharacterSprite character;
 	private DialogUi dialogUi;
 	private int dialogIndex = 0;
-	public static readonly string[] dialogLines = {
-		"Beverly: Hi, Mr Snake.",
-		"Snake: The outcome is Mr Owl crashing out and then after Ms Beverly begs for him to tell the truth he apologizes for accusing " +
-		"Mr Snake. The players tells him that smart people make hard decisions and have to face truths that may hurt themselves. ",
-		"Beverly: Ya'll just wanted to know what really happens to Mr Squirrel. We're sorry for taking him away from you.",
-		"Snake: Mr Monkey, we may not have been good friends, but I assure you Mr Squirrel would be pleased knowing you spoke the truth."
-	};
+	private Godot.Collections.Array dialogLines = [];
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		GD.Print("Program Initiated:");
+		dialogLines = LoadDialog("res://resources/scene.json");
 		dialogIndex = 0;
 		character = GetNode<CharacterSprite>("CanvasLayer2/Character/CharacterSprite");
 		dialogUi = GetNode<DialogUi>("CanvasLayer2/DialogUI");
 		dialogUi.Connect("AnimationDone", new Callable(this, nameof(OnTextAnimationDone)));
+		dialogUi.Connect("ChoiceSelected", new Callable(this, nameof(WhenChoiceSelected)));
+
 
 		ProcessCurrentLine();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-
 	public override void _Process(double delta)
 	{
 	}
@@ -42,7 +37,7 @@ public partial class MainScene : Node2D
 			}
 			else
 			{
-				if (dialogIndex < dialogLines.Length - 1)
+				if (dialogIndex < dialogLines.Count - 1)
 				{
 					dialogIndex += 1;
 					ProcessCurrentLine();
@@ -52,44 +47,105 @@ public partial class MainScene : Node2D
 		}
 	}
 
-
-	//Convert dialog lines, separating Speaker and dialog in a dictionary.
-	public Dictionary<string, string> ParseLine(string line)
-	{
-		string[] lineInfo = line.Split(":");
-
-		//Error handling
-		if (lineInfo.Length < 2)
-		{
-			GD.PushError("Line does not contain ':'");
-			return new Dictionary<string, string>();
-		}
-
-		return new Dictionary<string, string>
-		{
-			{"speakerName", lineInfo[0].Trim()},
-			{"dialogLine", lineInfo[1].Trim()}
-		};
-	}
-
 	public void ProcessCurrentLine()
 	{
-		var line = dialogLines[dialogIndex];
-		var lineInfo = ParseLine(line);
-		dialogUi.changeLine(lineInfo["speakerName"], lineInfo["dialogLine"]);
-		dialogUi.setDialogLine(lineInfo["dialogLine"]);
-		if (dialogUi.getAnimateText())
+		var line = dialogLines[dialogIndex].AsGodotDictionary();
+		//int test += 1;
+		GD.Print("current line: " + dialogIndex);
+		//Check if there is "goto"
+		GD.Print("Checking for 'goto'.....");
+		if (line.ContainsKey("goto"))
 		{
-			character.ChangeCharacter(lineInfo["speakerName"], "talking");
+			//test = "goto";
+			GD.Print("goto has been found");
+			dialogIndex = GetAnchorPosition(line["goto"]);
+			GD.Print(dialogIndex + " this is after 'goto' position has been found");
+			ProcessCurrentLine();
+			return;
+		}
+
+		//Check if there is "anchor"
+		GD.Print("Checking for 'anchor'....");
+		if (line.ContainsKey("anchor"))
+		{
+			GD.Print("anchor has been found");
+			dialogIndex += 1;
+			GD.Print("'anchor' positon has been found");
+			ProcessCurrentLine();
+			return;
+		}
+		GD.Print("nothing has been found.... reading line of dialog now");
+
+		//Check if there is "choices"
+		GD.Print("Checking for 'choices'.....");
+		if (line.ContainsKey("choices"))
+		{
+			GD.Print("choices has been found");
+			dialogUi.DisplayChoices(dialogLines);
+
 		}
 		else
 		{
-			character.ChangeCharacter(lineInfo["speakerName"]);
+			//Reading line of dialog
+			string speaker = line["speaker"].AsString();
+			string text = line["text"].AsString();
+			dialogUi.changeLine(speaker, text);
+			dialogUi.setDialogLine(text);
+
+			if (dialogUi.getAnimateText())
+			{
+				character.ChangeCharacter(speaker, "talking");
+			}
+			else
+			{
+				character.ChangeCharacter(speaker);
+			}
 		}
 	}
 
 	public void OnTextAnimationDone()
 	{
 		character.PlayIdleAnimation();
+	}
+
+	public void WhenChoiceSelected()
+	{
+
+	}
+
+	public Godot.Collections.Array LoadDialog(string filepath)
+	{
+		using var file = FileAccess.Open(filepath, FileAccess.ModeFlags.Read);
+		if (file != null)
+		{
+			GD.Print("File exist");
+			var content = file.GetAsText();
+			if (content == null)
+			{
+				GD.Print("the content is empty!!");
+				return null;
+			}
+			return Json.ParseString(content).AsGodotArray();
+		}
+		GD.Print("File does not exits!!");
+		return null;
+	}
+
+	public int GetAnchorPosition(Variant anchor)
+	{
+		GD.Print(dialogIndex);
+		GD.Print("Getting anchor position....");
+		for (int i = 0; i < dialogLines.Count; i++)
+		{
+			var line = dialogLines[i].AsGodotDictionary();
+			if (line.ContainsKey("anchor") && line["anchor"].AsString() == anchor.AsString())
+			{
+				GD.Print("anchor has been found");
+				return i;
+			}
+		}
+		GD.Print("ERROR: could not find anchor: " + anchor);
+		GD.Print(dialogIndex);
+		return -100;
 	}
 }

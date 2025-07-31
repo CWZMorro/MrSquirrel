@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class CharacterSprite : Node2D
 {
@@ -34,5 +33,10 @@ public partial class CharacterSprite : Node2D
 	public void PlayIdleAnimation()
 	{
 		animatedSprite.Play("idle");
+	}
+
+	public CharacterDatabase GetCharacterDatabase()
+	{
+		return charData;
 	}
 }

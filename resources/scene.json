@@ -3,7 +3,7 @@
 	"text": "Hi nice to meet you"},
 	{"speaker": "Snake",
 	"text": "Hello Beverly and Owl"},
-	{"speaker": "Owl",
+	{"speaker": "Monkey",
 	"text": "Choose."},
 	{"goto": "skipped"},
 	{"speaker": "Beverly",
@@ -19,6 +19,8 @@
 		[
 			{"text": "first choice.", "goto": "firstChoice"},
 			{"text": "second choice.", "goto": "secondChoice"},
+			{"text": "third choice.", "goto": "thirdChoice"},
+			{"text": "third choice.", "goto": "thirdChoice"},
 			{"text": "third choice.", "goto": "thirdChoice"}
 		]
 	},

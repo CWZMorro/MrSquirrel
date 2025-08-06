@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://1lthec7tnfhu"]
+
+[ext_resource type="Texture2D" uid="uid://mjjoontbk1r2" path="res://characters/monkey/MonkeyIdle.png" id="1_8nb8i"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8nb8i")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]

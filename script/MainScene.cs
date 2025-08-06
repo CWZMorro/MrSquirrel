@@ -81,7 +81,8 @@ public partial class MainScene : Node2D
 		if (line.ContainsKey("choices"))
 		{
 			GD.Print("choices has been found");
-			dialogUi.DisplayChoices(dialogLines);
+			Godot.Collections.Array choices = line["choices"].AsGodotArray();
+			dialogUi.DisplayChoices(choices);
 
 		}
 		else
@@ -110,7 +111,7 @@ public partial class MainScene : Node2D
 
 	public void WhenChoiceSelected()
 	{
-
+		dialogUi.HideChoiceList();
 	}
 
 	public Godot.Collections.Array LoadDialog(string filepath)

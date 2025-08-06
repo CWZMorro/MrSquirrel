@@ -24,7 +24,9 @@ public class CharacterDatabase
 		{"Snake",
 		new CharacterInfo("Snake", "male", GD.Load<SpriteFrames>("res://characters/Snake.tres"))},
 		{"Owl",
-		new CharacterInfo("Owl", "male", GD.Load<SpriteFrames>("res://characters/Owl.tres"))}
+		new CharacterInfo("Owl", "male", GD.Load<SpriteFrames>("res://characters/Owl.tres"))},
+		{"Monkey",
+		new CharacterInfo("Monkey", "male", GD.Load<SpriteFrames>("res://characters/Monkey.tres"))}
 	};
 
 	public SpriteFrames getCharInfo(string name)

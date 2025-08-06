@@ -62,6 +62,11 @@ public partial class DialogUi : Control
 	{
 		return animateText;
 	}
+
+	public void HideChoiceList()
+	{
+		choiceList.Hide();
+	}
 	public void changeLine(string name, string line)
 	{
 		speakerName.Text = name;
@@ -78,6 +83,7 @@ public partial class DialogUi : Control
 
 	public void DisplayChoices(Godot.Collections.Array choices)
 	{
+		int count = 0;
 		foreach (Node child in choiceList.GetChildren())
 		{
 			child.QueueFree();
@@ -86,6 +92,7 @@ public partial class DialogUi : Control
 		{
 			Button choiceButton = (Button)choiceButtonScene.Instantiate();
 			choiceButton.Text = (string)choice["text"];
+			GD.Print(count + " choice has been created.");
 			choiceButton.Pressed += () => _on_choice_button_pressed((string)choice["goto"]);
 			choiceList.AddChild(choiceButton);
 		}
@@ -96,5 +103,6 @@ public partial class DialogUi : Control
 	{
 		EmitSignal(SignalName.ChoiceSelected, goTo);
 		choiceList.Hide();
+		GD.Print("Choice List has been hidden.");
 	}
 }

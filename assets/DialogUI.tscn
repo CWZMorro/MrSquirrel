@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ky0e3p02fjc8" path="res://scene/playerChoice.tscn" id="2_vmvoc"]
 
 [sub_resource type="SystemFont" id="SystemFont_8lmd8"]
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmvoc"]
 bg_color = Color(0.26887, 0.698308, 0.419486, 0.372549)

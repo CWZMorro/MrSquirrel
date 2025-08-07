@@ -6,7 +6,7 @@ public partial class DialogUi : Control
 	[Signal]
 	public delegate void AnimationDoneEventHandler();
 	[Signal]
-	public delegate void ChoiceSelectedEventHandler(string goTo);
+	public delegate void WhenChoiceSelectedEventHandler(string anchor);
 	private RichTextLabel dialogLine;
 	private Label speakerName;
 	private CharacterSprite charSprite;
@@ -93,15 +93,15 @@ public partial class DialogUi : Control
 			Button choiceButton = (Button)choiceButtonScene.Instantiate();
 			choiceButton.Text = (string)choice["text"];
 			GD.Print(count + " choice has been created.");
-			choiceButton.Pressed += () => _on_choice_button_pressed((string)choice["goto"]);
+			choiceButton.Pressed += () => OnChoiceButtonPressed((string)choice["goto"]);
 			choiceList.AddChild(choiceButton);
 		}
 		choiceList.Show();
 	}
 
-	public void _on_choice_button_pressed(string goTo)
+	public void OnChoiceButtonPressed(string anchor)
 	{
-		EmitSignal(SignalName.ChoiceSelected, goTo);
+		EmitSignal(nameof(WhenChoiceSelected), anchor);
 		choiceList.Hide();
 		GD.Print("Choice List has been hidden.");
 	}

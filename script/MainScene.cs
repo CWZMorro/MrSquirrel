@@ -16,7 +16,7 @@ public partial class MainScene : Node2D
 		character = GetNode<CharacterSprite>("CanvasLayer2/Character/CharacterSprite");
 		dialogUi = GetNode<DialogUi>("CanvasLayer2/DialogUI");
 		dialogUi.Connect("AnimationDone", new Callable(this, nameof(OnTextAnimationDone)));
-		dialogUi.Connect("ChoiceSelected", new Callable(this, nameof(WhenChoiceSelected)));
+		dialogUi.Connect(nameof(dialogUi.WhenChoiceSelected), new Callable(this, nameof(WhenChoiceSelected)));
 
 
 		ProcessCurrentLine();
@@ -29,7 +29,8 @@ public partial class MainScene : Node2D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("nextLine"))
+		bool hasChoice = dialogLines[dialogIndex].AsGodotDictionary().ContainsKey("choices");
+		if (@event.IsActionPressed("nextLine") && !hasChoice)
 		{
 			if (dialogUi.getAnimateText())
 			{
@@ -109,9 +110,11 @@ public partial class MainScene : Node2D
 		character.PlayIdleAnimation();
 	}
 
-	public void WhenChoiceSelected()
+	public void WhenChoiceSelected(string anchor)
 	{
-		dialogUi.HideChoiceList();
+		GD.Print("WhenChoiceSelected method has been called.");
+		dialogIndex = GetAnchorPosition(anchor);
+		ProcessCurrentLine();
 	}
 
 	public Godot.Collections.Array LoadDialog(string filepath)
@@ -141,7 +144,7 @@ public partial class MainScene : Node2D
 			var line = dialogLines[i].AsGodotDictionary();
 			if (line.ContainsKey("anchor") && line["anchor"].AsString() == anchor.AsString())
 			{
-				GD.Print("anchor has been found");
+				GD.Print(anchor + " anchor has been found " + i);
 				return i;
 			}
 		}

@@ -19,8 +19,6 @@
 		[
 			{"text": "first choice.", "goto": "firstChoice"},
 			{"text": "second choice.", "goto": "secondChoice"},
-			{"text": "third choice.", "goto": "thirdChoice"},
-			{"text": "third choice.", "goto": "thirdChoice"},
 			{"text": "third choice.", "goto": "thirdChoice"}
 		]
 	},

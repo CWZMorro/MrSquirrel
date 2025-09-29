@@ -32,7 +32,7 @@
 	{"speaker": "Snake",
 	"text": "This is Snake, the result of the second choice."},
 	{"speaker": "Owl",
-	"text": "This is Owl, the second dialog for the the third choice."},
+	"text": "This is Owl, the second dialog for the the second choice."},
 	{"goto": "end"},
 	{"anchor": "thirdChoice"},
 	{"speaker": "Owl",
